@@ -1,4 +1,4 @@
-import { Doc, doc, FastPath } from 'prettier';
+import { AstPath, Doc, doc, FastPath } from 'prettier';
 import { formattableAttributes, selfClosingTags } from '../lib/elements';
 import { hasSnippedContent, unsnipContent } from '../lib/snipTagContent';
 import { isBracketSameLine, ParserOptions, parseSortOrder, SortOrderPart } from '../options';
@@ -48,6 +48,7 @@ import {
     AttributeNode,
     CommentInfo,
     CommentNode,
+    ElementNode,
     IfBlockNode,
     Node,
     OptionsNode,
@@ -78,12 +79,52 @@ let ignoreNext = false;
 let ignoreRange = false;
 let svelteOptionsDoc: Doc | undefined;
 
-export function print(path: FastPath, options: ParserOptions, print: PrintFn): Doc {
+export function print(path: AstPath, options: ParserOptions, print: PrintFn): Doc {
     const bracketSameLine = isBracketSameLine(options);
 
-    const n = path.getValue();
+    const n = path.getValue() as Node;
     if (!n) {
         return '';
+    }
+    
+    if (n.type === 'Element' && options.svelteSortAttributes) {
+        const grouped: Record<string, Node[]> = {};
+
+        const order = ['Attribute', 'Binding', 'EventHandler'];
+
+        n.attributes.forEach((obj) => {
+          const type = obj.type;
+      
+          if (!grouped[type]) {
+            grouped[type] = [];
+          }
+      
+          grouped[type].push(obj);
+        });
+
+        const result = Object.entries(grouped).sort((a, b) => {
+            const [keyA] = a;
+            const [keyB] = b;
+            const indexA = order.indexOf(keyA);
+            const indexB = order.indexOf(keyB);
+        
+            if (indexA === indexB) {
+              return Object.entries(grouped).indexOf(a) - Object.entries(grouped).indexOf(b);
+            } else {
+              return indexA - indexB;
+            }
+        });
+
+        const sortedResult = result.map(([_, value]) => value);
+
+        n.attributes = sortedResult.map(type => {
+            const typeToSort = type as ElementNode[];
+            return typeToSort.sort((a, b) => {
+                const attributeA = a.name.toUpperCase();
+                const attributeB = b.name.toUpperCase();
+                return (attributeA < attributeB) ? -1 : (attributeA > attributeB) ? 1 : 0;
+            })
+        }).flat();
     }
 
     if (isASTNode(n)) {

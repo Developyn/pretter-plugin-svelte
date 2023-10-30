@@ -1,6 +1,7 @@
 import { Config } from 'prettier';
 
 export interface PluginConfig {
+    svelteSortAttributes?: boolean;
     svelteSortOrder?: SortOrder;
     svelteStrictMode?: boolean;
     svelteBracketNewLine?: boolean;

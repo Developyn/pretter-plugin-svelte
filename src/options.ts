@@ -8,6 +8,12 @@ function makeChoice(choice: string) {
 }
 
 export const options: Record<keyof PluginConfig, SupportOption> = {
+    svelteSortAttributes: {
+        category: 'Svelte',
+        type: 'boolean',
+        default: true,
+        description: "Sort attributes by Developyn's standards",
+    },
     svelteSortOrder: {
         category: 'Svelte',
         type: 'choice',
