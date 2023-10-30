@@ -2,6 +2,11 @@
 
 Format your Svelte components using Prettier.
 
+## Developyn
+
+This is a fork of the original `prettier-plugin-svelte` available [here](https://www.npmjs.com/package/prettier-plugin-svelte) with some Developyn
+specific formatting rules. This will mainly be used by Developyn.
+
 ## Features
 
 -   Format your HTML, CSS, and JavaScript using prettier

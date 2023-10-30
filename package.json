@@ -1,7 +1,7 @@
 {
-    "name": "prettier-plugin-svelte",
-    "version": "3.0.3",
-    "description": "Svelte plugin for prettier",
+    "name": "developyn-prettier-plugin-svelte",
+    "version": "1.0.0",
+    "description": "Svelte plugin for prettier with some Developyn specific rules.",
     "main": "plugin.js",
     "files": [
         "plugin.js",
@@ -22,20 +22,12 @@
         "prepare": "npm run build",
         "prepublishOnly": "npm test"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/sveltejs/prettier-plugin-svelte.git"
-    },
     "keywords": [
         "prettier",
         "svelte"
     ],
     "author": "James Birtles <jameshbirtles@gmail.com>",
     "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/sveltejs/prettier-plugin-svelte/issues"
-    },
-    "homepage": "https://github.com/sveltejs/prettier-plugin-svelte#readme",
     "devDependencies": {
         "@rollup/plugin-commonjs": "14.0.0",
         "@rollup/plugin-node-resolve": "11.0.1",
