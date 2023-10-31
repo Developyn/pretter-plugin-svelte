@@ -1,6 +1,6 @@
 {
     "name": "@bradley-developyn/developyn-prettier-plugin-svelte",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Svelte plugin for prettier with some Developyn specific rules.",
     "main": "plugin.js",
     "files": [
