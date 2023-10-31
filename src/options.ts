@@ -11,7 +11,7 @@ export const options: Record<keyof PluginConfig, SupportOption> = {
     svelteSortAttributes: {
         category: 'Svelte',
         type: 'boolean',
-        default: true,
+        default: false,
         description: "Sort attributes by Developyn's standards",
     },
     svelteSortOrder: {

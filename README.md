@@ -87,6 +87,17 @@ If you want to customize some formatting behavior, see section "Options" below.
 
 Make a `.prettierrc` file in your project directory and add your preferred [options](https://prettier.io/docs/en/options.html) to [configure Prettier](https://prettier.io/docs/en/configuration.html). When using Prettier through the CLI, you can also pass options through CLI flags, but a `.prettierrc` file is recommended.
 
+### Svelte Sort Attributes
+
+Sort attributes in the order `attribute`, `bindings`, `events`. These will also be order alphabetically.
+
+Format: `true` or `false`
+
+| Default  | CLI Override                         | API Override                      |
+| -------- | ------------------------------------ | --------------------------------- |
+| `false`  | `--svelte-sort-attributes <boolean>` | `svelteSortAttributes: <boolean>` |
+
+
 ### Svelte Sort Order
 
 Sort order for `svelte:options`, scripts, markup, and styles.
